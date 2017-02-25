@@ -15,6 +15,6 @@ class ProductProduct(models.Model):
 
 
     @api.model
-    def ecommerce_get_product(self, limit=None):
+    def ecommerce_get_product(self, offset=None, limit=None):
         self = self.sudo()
-        return self.search_read([], ['id', 'name', 'lst_price', 'categ_id', 'product_brand_id'], limit=limit)
+        return self.search_read([], ['id', 'name', 'lst_price', 'categ_id', 'product_brand_id'], offset=offset, limit=limit)
