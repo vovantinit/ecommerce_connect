@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+                
+
+    <t t-name="XmlReceiptPrint2">
+        <receipt align='center' width='42' value-thousands-separator='' >            
+            <div font='b'>
+                <t t-if='receipt.cashier'>
+                    <div class='cashier'>
+                        <div>--------------------------------</div>
+                        <div>LIÊN 2 - DÀNH CHO CỬA HÀNG</div>
+                        <div>Phục vụ bởi <t t-esc='receipt.cashier' /></div>
+                        <t t-if="widget.pos.get_client()">
+                            Khách hàng: <t t-esc="widget.pos.get_client().name" />
+                            <t t-if="widget.pos.get_client().phone" >
+                                - <t t-esc="widget.pos.get_client().phone" />
+                            </t>
+                            <t t-if="!widget.pos.get_client().phone" >
+                                <t t-if="widget.pos.get_client().mobile" >
+                                    - <t t-esc="widget.pos.get_client().mobile" />
+                                </t>
+                            </t>
+                        </t>
+                    </div>
+                </t>
+            </div>
+            <br /><br />
+
+            <!-- Orderlines -->
+
+            <div class='orderlines' line-ratio='0.7'>
+                <t t-foreach='receipt.orderlines' t-as='line'>
+                    <t t-set='simple' t-value='line.discount === 0 and line.unit_name === "Unit(s)" and line.quantity === 1' />
+                    <t t-if='simple'>
+                        <line>
+                            <left><t t-esc='line.product_name_wrapped[0]' /></left>
+                            <right><value><t t-esc='line.price_display' /></value></right>
+                        </line>
+                        <t t-call="XmlReceiptWrappedProductNameLines"/>
+                    </t>
+                    <t t-if='!simple'>
+                        <line><left><t t-esc='line.product_name_wrapped[0]' /></left></line>
+                        <t t-call="XmlReceiptWrappedProductNameLines"/>
+
+                        <line>
+                            <left>
+                                <value value-decimals='0' value-autoint='on'>
+                                    <t t-esc='line.quantity' />
+                                </value>x<value value-decimals='0'>
+                                    <t t-esc='line.price' />
+                                </value>
+                                =
+                                <value value-decimals='0'>
+                                    <t t-esc='line.quantity * line.price' />
+                                </value>
+                            </left>
+
+                            <right>
+                                <value><t t-esc='line.price_display' /></value>
+                            </right>
+                        </line>
+
+                        <t t-if='line.discount !== 0'>
+                            <line><left>Giảm: <t t-esc='line.discount' />%</left></line>
+                            <line>
+                                <left>
+                                    <value value-decimals='0' value-autoint='on'>
+                                        <t t-esc='line.quantity' />
+                                    </value>x<value value-decimals='0'>
+                                        <t t-esc='line.price * (line.discount / 100)' />
+                                    </value>
+                                    =
+                                    <value value-decimals='0'>
+                                        <t t-esc='line.quantity * line.price * (line.discount / 100)' />
+                                    </value>
+                                </left>
+                            </line>
+                        </t>
+
+                        <t t-if='line.fix_discount !== 0'>
+                            <line ><left>Giảm:
+                                <value value-decimals='0'>
+                                    <t t-esc='line.fix_discount' />
+                                </value>
+                            </left></line>
+                            <line>
+                                <left>
+                                    <value value-decimals='0' value-autoint='on'>
+                                        <t t-esc='line.quantity' />
+                                    </value>x<value value-decimals='0'>
+                                        <t t-esc='line.fix_discount' />
+                                    </value>
+                                    =
+                                    <value value-decimals='0'>
+                                        <t t-esc='line.quantity * line.fix_discount' />
+                                    </value>
+                                </left>
+                            </line>
+                        </t>
+                    </t>
+                </t>
+            </div>
+
+            <!-- Subtotal -->
+
+            <t t-set='taxincluded' t-value='Math.abs(receipt.subtotal - receipt.total_with_tax) &lt;= 0.000001' />
+            <t t-if='!taxincluded'>
+                <line><right>--------</right></line>
+                <line><left>Thành tiền</left><right> <value><t t-esc="receipt.subtotal" /></value></right></line>
+                <t t-foreach='receipt.tax_details' t-as='tax'>
+                    <line>
+                        <left><t t-esc='tax.name' /></left>
+                        <right><value><t t-esc='tax.amount' /></value></right>
+                    </line>
+                </t>
+            </t>
+
+            <!-- Total -->
+
+            <line><right>--------</right></line>
+            <line class='total' size='double-height'>
+                <left><pre>        TỔNG</pre></left>
+                <right><value><t t-esc='receipt.total_with_tax' /></value></right>
+            </line>
+            <br/><br/>
+
+            <!-- Payment Lines -->
+
+            <t t-foreach='paymentlines' t-as='line'>
+                <line>
+                    <left><t t-esc='line.name' /></left>
+                    <right><value><t t-esc='line.get_amount()'/></value></right>
+                </line>
+            </t>
+            <br/> 
+
+            <line size='double-height'>
+                <left><pre>        TIỀN THỪA</pre></left>
+                <right><value><t t-esc='receipt.change' /></value></right>
+            </line>
+            <br/>
+            
+            <!-- Extra Payment Info -->
+
+            <t t-if='receipt.total_discount'>
+                <line>
+                    <left>Giảm gía</left>
+                    <right><value><t t-esc='receipt.total_discount'/></value></right>
+                </line>
+            </t>
+            <t t-if='taxincluded'>
+                <t t-foreach='receipt.tax_details' t-as='tax'>
+                    <line>
+                        <left><t t-esc='tax.name' /></left>
+                        <right><value><t t-esc='tax.amount' /></value></right>
+                    </line>
+                </t>
+                <line>
+                    <left>Tổng thuế</left>
+                    <right><value><t t-esc='receipt.total_tax'/></value></right>
+                </line>
+            </t>
+
+            <div class='before-footer' />
+
+            <!-- Footer -->
+            <t t-if='receipt.footer_xml'>
+                <t t-raw='receipt.footer_xml' />
+            </t>
+
+            <t t-if='!receipt.footer_xml and receipt.footer'>
+                <br/>
+                <t t-esc='receipt.footer' />
+                <br/>
+                <br/>
+            </t>
+
+            <div class='after-footer' />
+
+            <br/>
+            <div font='b'>
+                <div><t t-esc='receipt.name' /></div>
+                <div><t t-esc='receipt.date.localestring' /></div>
+            </div>
+
+        </receipt>
+
+    </t>
+                
+    <t t-name="XmlReceiptPrint3">
+       <receipt align='center' width='42' value-thousands-separator='' >            
+            <div font='b'>
+                <t t-if='receipt.cashier'>
+                    <div class='cashier'>
+                        <div>--------------------------------</div>
+                        <div>LIÊN 3 - DÀNH CHO KẾ TOÁN</div>
+                        <div>Phục vụ bởi <t t-esc='receipt.cashier' /></div>
+                        <t t-if="widget.pos.get_client()">
+                            Khách hàng: <t t-esc="widget.pos.get_client().name" />
+                            <t t-if="widget.pos.get_client().phone" >
+                                - <t t-esc="widget.pos.get_client().phone" />
+                            </t>
+                            <t t-if="!widget.pos.get_client().phone" >
+                                <t t-if="widget.pos.get_client().mobile" >
+                                    - <t t-esc="widget.pos.get_client().mobile" />
+                                </t>
+                            </t>
+                        </t>
+                    </div>
+                </t>
+            </div>
+            <br /><br />
+
+            <!-- Orderlines -->
+
+            <div class='orderlines' line-ratio='0.7'>
+                <t t-foreach='receipt.orderlines' t-as='line'>
+                    <t t-set='simple' t-value='line.discount === 0 and line.unit_name === "Unit(s)" and line.quantity === 1' />
+                    <t t-if='simple'>
+                        <line>
+                            <left><t t-esc='line.product_name_wrapped[0]' /></left>
+                            <right><value><t t-esc='line.price_display' /></value></right>
+                        </line>
+                        <t t-call="XmlReceiptWrappedProductNameLines"/>
+                    </t>
+                    <t t-if='!simple'>
+                        <line><left><t t-esc='line.product_name_wrapped[0]' /></left></line>
+                        <t t-call="XmlReceiptWrappedProductNameLines"/>
+
+                        <line>
+                            <left>
+                                <value value-decimals='0' value-autoint='on'>
+                                    <t t-esc='line.quantity' />
+                                </value>x<value value-decimals='0'>
+                                    <t t-esc='line.price' />
+                                </value>
+                                =
+                                <value value-decimals='0'>
+                                    <t t-esc='line.quantity * line.price' />
+                                </value>
+                            </left>
+
+                            <right>
+                                <value><t t-esc='line.price_display' /></value>
+                            </right>
+                        </line>
+
+                        <t t-if='line.discount !== 0'>
+                            <line ><left>Giảm:
+                                <value value-decimals='0'>
+                                    <t t-esc='line.fix_discount' />
+                                </value>
+                            </left></line>
+                            <line>
+                                <left>
+                                    <value value-decimals='0' value-autoint='on'>
+                                        <t t-esc='line.quantity' />
+                                    </value>x<value value-decimals='0'>
+                                        <t t-esc='line.price * (line.discount / 100)' />
+                                    </value>
+                                    =
+                                    <value value-decimals='0'>
+                                        <t t-esc='line.quantity * line.price * (line.discount / 100)' />
+                                    </value>
+                                </left>
+                            </line>
+                        </t>
+
+                        <t t-if='line.fix_discount !== 0'>
+                            <line ><left>Giảm: <t t-esc='line.fix_discount' /></left></line>
+                            <line>
+                                <left>
+                                    <value value-decimals='0' value-autoint='on'>
+                                        <t t-esc='line.quantity' />
+                                    </value>x<value value-decimals='0'>
+                                        <t t-esc='line.fix_discount' />
+                                    </value>
+                                    =
+                                    <value value-decimals='0'>
+                                        <t t-esc='line.quantity * line.fix_discount' />
+                                    </value>
+                                </left>
+                            </line>
+                        </t>
+                    </t>
+                </t>
+            </div>
+
+            <!-- Subtotal -->
+
+            <t t-set='taxincluded' t-value='Math.abs(receipt.subtotal - receipt.total_with_tax) &lt;= 0.000001' />
+            <t t-if='!taxincluded'>
+                <line><right>--------</right></line>
+                <line><left>Thành tiền</left><right> <value><t t-esc="receipt.subtotal" /></value></right></line>
+                <t t-foreach='receipt.tax_details' t-as='tax'>
+                    <line>
+                        <left><t t-esc='tax.name' /></left>
+                        <right><value><t t-esc='tax.amount' /></value></right>
+                    </line>
+                </t>
+            </t>
+
+            <!-- Total -->
+
+            <line><right>--------</right></line>
+            <line class='total' size='double-height'>
+                <left><pre>        TỔNG</pre></left>
+                <right><value><t t-esc='receipt.total_with_tax' /></value></right>
+            </line>
+            <br/><br/>
+
+            <!-- Payment Lines -->
+
+            <t t-foreach='paymentlines' t-as='line'>
+                <line>
+                    <left><t t-esc='line.name' /></left>
+                    <right><value><t t-esc='line.get_amount()'/></value></right>
+                </line>
+            </t>
+            <br/> 
+
+            <line size='double-height'>
+                <left><pre>        TIỀN THỪA</pre></left>
+                <right><value><t t-esc='receipt.change' /></value></right>
+            </line>
+            <br/>
+            
+            <!-- Extra Payment Info -->
+
+            <t t-if='receipt.total_discount'>
+                <line>
+                    <left>Giảm gía</left>
+                    <right><value><t t-esc='receipt.total_discount'/></value></right>
+                </line>
+            </t>
+            <t t-if='taxincluded'>
+                <t t-foreach='receipt.tax_details' t-as='tax'>
+                    <line>
+                        <left><t t-esc='tax.name' /></left>
+                        <right><value><t t-esc='tax.amount' /></value></right>
+                    </line>
+                </t>
+                <line>
+                    <left>Tổng thuế</left>
+                    <right><value><t t-esc='receipt.total_tax'/></value></right>
+                </line>
+            </t>
+
+            <div class='before-footer' />
+
+            <!-- Footer -->
+            <t t-if='receipt.footer_xml'>
+                <t t-raw='receipt.footer_xml' />
+            </t>
+
+            <t t-if='!receipt.footer_xml and receipt.footer'>
+                <br/>
+                <t t-esc='receipt.footer' />
+                <br/>
+                <br/>
+            </t>
+
+            <div class='after-footer' />
+
+            <br/>
+            <div font='b'>
+                <div><t t-esc='receipt.name' /></div>
+                <div><t t-esc='receipt.date.localestring' /></div>
+            </div>
+
+        </receipt>
+    </t>
+
+
+</templates>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data noupdate="1">
+
+    <record id="groups_confirm_unexpected" model="res.groups">
+        <field name="name">Duyệt đơn hàng POS bất thường</field>
+    </record>
+
+</data>
+</odoo>

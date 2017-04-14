@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+    <record id="view_report_pos_order_tree" model="ir.ui.view">
+        <field name="name">report.pos.order.tree</field>
+        <field name="model">report.pos.order</field>
+        <field name="arch" type="xml">
+            <tree create="false" edit="false" >
+                <field name="location_id" />
+                <field name="order_id" />
+                <field name="date" />
+                <field name="product_id" />
+                <field name="product_brand_id" />
+                <field name="product_categ_id" />
+                <field name="product_qty" string="Số lượng" />
+                <field name="price_unit" />
+                <field name="discount" />
+                <field name="fix_discount" sum="Sum" />
+                <field name="total_discount" sum="Sum" />
+                <field name="price_sub_total" />
+                <field name="price_total" />
+                <field name="partner_id" />
+                <field name="user_id" />
+                <field name="sky_note"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_report_pos_order_search" model="ir.ui.view">
+        <field name="name">report.pos.order.search</field>
+        <field name="model">report.pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_report_pos_order_search" />
+        <field name="arch" type="xml">
+            <field name="date" position="after" >
+                <filter name="sales" string="Hàng bán" domain="[('product_qty','&gt;',0)]"/>
+                <filter name="refund" string="Hàng trả lại" domain="[('product_qty','&lt;',0)]"/>
+            </field>
+            <group position="inside" >
+                <filter string="Ngày đặt hàng" context="{'group_by':'date:day'}" />
+            </group>
+        </field>
+    </record>
+
+    <record id="action_report_sale_order" model="ir.actions.act_window">
+        <field name="name">Báo cáo bán hàng theo sản phẩm</field>
+        <field name="res_model">report.pos.order</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="context">{
+            'tree_search': [{   
+                                'string': 'Địa điểm', 
+                                'name': 'location_id', 
+                                'domain': [('usage', '=', 'internal'), ('location_id.sky_transfer_location', '=', False)],
+                            }, 
+                            {   
+                                'string': 'Nhân viên bán hàng', 
+                                'name': 'user_id', 
+                                'domain': [],
+                            },
+                            {   
+                                'string': 'Thương hiệu', 
+                                'name': 'product_brand_id', 
+                                'domain': [],
+                            },
+                            {   
+                                'string': 'Nhóm sản phẩm', 
+                                'name': 'product_categ_id', 
+                                'domain': [],
+                            },
+                            
+            ]
+        }</field>
+        <field name="view_id" ref="view_report_pos_order_tree" />
+    </record>
+
+    <menuitem id="pos_order_report_menu" parent="point_of_sale.menu_point_rep" action="action_report_sale_order" sequence="20" />
+
+</data>
+</odoo>

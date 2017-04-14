@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data noupdate="1">
+
+    <record id="limit_return_day" model="ir.config_parameter">
+        <field name="key">limit_return_day</field>
+        <field name="value">7</field>
+    </record>
+
+</data>
+</odoo>

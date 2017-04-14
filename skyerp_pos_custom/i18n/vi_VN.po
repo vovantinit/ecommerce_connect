@@ -1,0 +1,673 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* skyerp_pos_custom
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-22 02:50+0000\n"
+"PO-Revision-Date: 2017-02-22 02:50+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: skyerp_pos_custom
+#: code:addons/skyerp_pos_custom/models/sky_pos_order.py:37
+#, python-format
+msgid " REFUND"
+msgstr " REFUND"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_nbr_lines
+msgid "# Số dòng"
+msgstr "# Số dòng"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_nbr_lines
+msgid "# of Lines"
+msgstr "Số lượng dòng"
+
+#. module: skyerp_pos_custom
+#. openerp-web
+#: code:addons/skyerp_pos_custom/static/src/js/sky_pos.js:208
+#, python-format
+msgid "Add note"
+msgstr "Ghi chú"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_average_price
+msgid "Average Price"
+msgstr "Giá Bình quân"
+
+#. module: skyerp_pos_custom
+#: model:ir.model,name:skyerp_pos_custom.model_account_bank_statement_line
+msgid "Bank Statement Line"
+msgstr "Cho tiết Sao kê ngân hàng"
+
+#. module: skyerp_pos_custom
+#: code:addons/skyerp_pos_custom/models/sky_pos_session.py:25
+#, python-format
+msgid "Bank control haven't set up."
+msgstr "Bank control haven't set up."
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_pos_order_sky_bank_total
+msgid "Bank total"
+msgstr "Trả bằng thẻ"
+
+#. module: skyerp_pos_custom
+#: model:ir.actions.act_window,name:skyerp_pos_custom.action_report_sale_order
+#: model:ir.ui.menu,name:skyerp_pos_custom.pos_order_report_menu
+msgid "Báo cáo bán hàng theo sản phẩm"
+msgstr "Báo cáo bán hàng theo sản phẩm"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_pricelist_id
+msgid "Bảng giá"
+msgstr "Bảng giá"
+
+#. module: skyerp_pos_custom
+#. openerp-web
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_note.xml:61
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_note.xml:64
+#, python-format
+msgid "C.Khấu"
+msgstr "C.Khấu"
+
+#. module: skyerp_pos_custom
+#: selection:report.pos.order.supplier,state:0
+msgid "Cancelled"
+msgstr "Cancelled"
+
+#. module: skyerp_pos_custom
+#: code:addons/skyerp_pos_custom/models/sky_pos_session.py:27
+#, python-format
+msgid "Cash control haven't set up."
+msgstr "Cash control haven't set up."
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_pos_order_sky_cash_total
+msgid "Cash total"
+msgstr "Trả bằng tiền mặt"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_discount
+msgid "Chiết khấu (%)"
+msgstr "Chiết khấu (%)"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_company_id
+msgid "Company"
+msgstr "Công ty"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_company_id
+msgid "Công ty"
+msgstr "Công ty"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_date
+msgid "Date Order"
+msgstr "Ngày đặt hàng"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_delay_validation
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_delay_validation
+msgid "Delay Validation"
+msgstr "Thẩm định Độ trễ"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_discount
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_discount
+msgid "Discount (%)"
+msgstr "Chiết khấu (%)"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_display_name
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_display_name
+msgid "Display Name"
+msgstr "Tên hiển thị"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_pos_order_line_sky_discount_fix_price
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_fix_discount
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_fix_discount
+msgid "Fix discount"
+msgstr "Giảm giá"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_sky_note
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_sky_note
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_sky_note
+msgid "Ghi chú"
+msgstr "Ghi chú"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_average_price
+msgid "Giá bình quân"
+msgstr "Giá bình quân"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_price_total
+msgid "Giá tổng"
+msgstr "Giá tổng"
+
+#. module: skyerp_pos_custom
+#. openerp-web
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_note.xml:11
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_note.xml:20
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_note.xml:46
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_note.xml:51
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_note.xml:344
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_fix_discount
+#, python-format
+msgid "Giảm giá"
+msgstr "Giảm giá"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_total_discount
+msgid "Giảm giá tổng"
+msgstr "Giảm giá tổng"
+
+#. module: skyerp_pos_custom
+#. openerp-web
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_base.xml:147
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_base.xml:332
+#, python-format
+msgid "Giảm gía"
+msgstr "Giảm giá"
+
+#. module: skyerp_pos_custom
+#. openerp-web
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_base.xml:64
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_base.xml:81
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_base.xml:249
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_base.xml:270
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_note.xml:259
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_note.xml:276
+#, python-format
+msgid "Giảm:"
+msgstr "Giảm:"
+
+#. module: skyerp_pos_custom
+#: model:ir.ui.view,arch_db:skyerp_pos_custom.view_report_pos_order_search
+msgid "Hàng bán"
+msgstr "Hàng bán"
+
+#. module: skyerp_pos_custom
+#: model:ir.ui.view,arch_db:skyerp_pos_custom.view_report_pos_order_search
+msgid "Hàng trả lại"
+msgstr "Hàng trả lại"
+
+#. module: skyerp_pos_custom
+#: selection:report.pos.order.group,state:0
+msgid "Hủy"
+msgstr "Hủy"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_id
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_id_5823
+msgid "ID"
+msgstr "ID"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_invoiced
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_invoiced
+#: selection:report.pos.order.supplier,state:0
+msgid "Invoiced"
+msgstr "Đã xuất Hoá đơn"
+
+#. module: skyerp_pos_custom
+#: model:ir.model,name:skyerp_pos_custom.model_account_journal
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_journal_id
+msgid "Journal"
+msgstr "Sổ nhật ký"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_stock_location_id
+msgid "Kho hàng"
+msgstr "Kho hàng"
+
+#. module: skyerp_pos_custom
+#. openerp-web
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_base.xml:13
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_base.xml:198
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_note.xml:208
+#, python-format
+msgid "Khách hàng:"
+msgstr "Khách hàng:"
+
+#. module: skyerp_pos_custom
+#. openerp-web
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_base.xml:11
+#, python-format
+msgid "LIÊN 2 - DÀNH CHO CỬA HÀNG"
+msgstr "LIÊN 2 - DÀNH CHO CỬA HÀNG"
+
+#. module: skyerp_pos_custom
+#. openerp-web
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_base.xml:196
+#, python-format
+msgid "LIÊN 3 - DÀNH CHO KẾ TOÁN"
+msgstr "LIÊN 3 - DÀNH CHO KẾ TOÁN"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group___last_update
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier___last_update
+msgid "Last Modified on"
+msgstr "Sửa lần cuối vào"
+
+#. module: skyerp_pos_custom
+#: model:ir.model,name:skyerp_pos_custom.model_pos_order_line
+msgid "Lines of Point of Sale"
+msgstr "Dòng đơn hàng POS"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_location_id
+msgid "Location"
+msgstr "Địa điểm"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_product_tmpl_id
+msgid "Mẫu sản phẩm"
+msgstr "Mẫu sản phẩm"
+
+#. module: skyerp_pos_custom
+#: selection:report.pos.order.group,state:0
+msgid "Mới"
+msgstr "Mới"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_user_id
+msgid "NV bán hàng"
+msgstr "NV bán hàng"
+
+#. module: skyerp_pos_custom
+#: selection:report.pos.order.supplier,state:0
+msgid "New"
+msgstr "Mới"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_date
+#: model:ir.ui.view,arch_db:skyerp_pos_custom.view_report_pos_order_search
+msgid "Ngày đặt hàng"
+msgstr "Ngày đặt hàng"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_supplier_id
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_supplier_id
+msgid "Nhà cung cấp"
+msgstr "Nhà cung cấp"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_product_categ_id
+msgid "Nhóm sản phẩm"
+msgstr "Nhóm sản phẩm"
+
+#. module: skyerp_pos_custom
+#. openerp-web
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_note.xml:37
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_pos_order_line_sky_note
+#, python-format
+msgid "Note"
+msgstr "Ghi chú"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_pos_config_iface_orderline_sky_notes
+msgid "Note in Order line"
+msgstr "Ghi chú"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_order_id
+msgid "Order"
+msgstr "Đơn hàng"
+
+#. module: skyerp_pos_custom
+#: selection:report.pos.order.supplier,state:0
+msgid "Paid"
+msgstr "Đã thanh toán"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_partner_id
+msgid "Partner"
+msgstr "Đối tác"
+
+#. module: skyerp_pos_custom
+#: model:ir.model,name:skyerp_pos_custom.model_account_payment
+msgid "Payments"
+msgstr "Thanh toán"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_session_id
+msgid "Phiên"
+msgstr "Phiên"
+
+#. module: skyerp_pos_custom
+#: code:addons/skyerp_pos_custom/models/sky_account.py:74
+#, python-format
+msgid "Phiên POS chưa có sao kê"
+msgstr "Phiên POS chưa có sao kê"
+
+#. module: skyerp_pos_custom
+#. openerp-web
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_base.xml:12
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_base.xml:197
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_note.xml:207
+#, python-format
+msgid "Phục vụ bởi"
+msgstr "Phục vụ bởi"
+
+#. module: skyerp_pos_custom
+#: model:ir.model,name:skyerp_pos_custom.model_pos_order
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_config_id
+msgid "Point of Sale"
+msgstr "Điểm bán lẻ"
+
+#. module: skyerp_pos_custom
+#: model:ir.model,name:skyerp_pos_custom.model_report_pos_order
+msgid "Point of Sale Orders Statistics"
+msgstr "Thông kê Đơn hàng PoS"
+
+#. module: skyerp_pos_custom
+#: selection:report.pos.order.supplier,state:0
+msgid "Posted"
+msgstr "Posted"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_pricelist_id
+msgid "Pricelist"
+msgstr "Bảng giá"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_pos_config_print_3_receipt
+msgid "Print 3 bill"
+msgstr "In 3 liên"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_product_id
+msgid "Product"
+msgstr "Sản phẩm"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_product_categ_id
+msgid "Product Category"
+msgstr "Nhóm Sản phẩm"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_product_qty
+msgid "Product Quantity"
+msgstr "Số lượng sản phẩm"
+
+#. module: skyerp_pos_custom
+#: model:ir.model,name:skyerp_pos_custom.model_product_template
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_product_tmpl_id
+msgid "Product Template"
+msgstr "Mẫu Sản phẩm"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_pos_categ_id
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_pos_categ_id
+msgid "Public Category"
+msgstr "Nhóm công cộng"
+
+#. module: skyerp_pos_custom
+#: code:addons/skyerp_pos_custom/models/sky_pos_order.py:44
+#, python-format
+msgid "Return Products"
+msgstr "Return Products"
+
+#. module: skyerp_pos_custom
+#. openerp-web
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_note.xml:187
+#, python-format
+msgid "SDT:"
+msgstr "SDT:"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_user_id
+msgid "Salesperson"
+msgstr "Nhân viên bán hàng"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_session_id
+msgid "Session"
+msgstr "Phiên"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_state
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_state
+msgid "Status"
+msgstr "Tình trạng"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_price_sub_total
+msgid "Subtotal w/o discount"
+msgstr "Tổng phụ chưa tính chiết khấu"
+
+#. module: skyerp_pos_custom
+#: model:ir.ui.view,arch_db:skyerp_pos_custom.view_report_pos_order_tree
+msgid "Sum"
+msgstr "Tổng"
+
+#. module: skyerp_pos_custom
+#: model:ir.ui.view,arch_db:skyerp_pos_custom.sky_view_pos_order_tree
+msgid "Sum bank"
+msgstr "Tổng thẻ"
+
+#. module: skyerp_pos_custom
+#: model:ir.ui.view,arch_db:skyerp_pos_custom.sky_view_pos_order_tree
+msgid "Sum cash"
+msgstr "Tổng tiền mặt"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_product_id
+msgid "Sản phẩm"
+msgstr "Sản phẩm"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_product_qty
+#: model:ir.ui.view,arch_db:skyerp_pos_custom.view_report_pos_order_tree
+msgid "Số lượng"
+msgstr "Số lượng"
+
+#. module: skyerp_pos_custom
+#. openerp-web
+#: code:addons/skyerp_pos_custom/static/src/js/sky_pos.js:184
+#, python-format
+msgid "Số lượng sản phẩm  không đủ."
+msgstr "Số lượng sản phẩm  không đủ."
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_journal_id
+msgid "Sổ nhật kí"
+msgstr "Sổ nhật kí"
+
+#. module: skyerp_pos_custom
+#. openerp-web
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_base.xml:138
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_base.xml:323
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_note.xml:335
+#, python-format
+msgid "TIỀN THỪA"
+msgstr "TIỀN THỪA"
+
+#. module: skyerp_pos_custom
+#. openerp-web
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_base.xml:109
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_base.xml:294
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_note.xml:306
+#, python-format
+msgid "Thành tiền"
+msgstr "Thành tiền"
+
+#. module: skyerp_pos_custom
+#. openerp-web
+#: code:addons/skyerp_pos_custom/static/src/js/sky_pos.js:183
+#: code:addons/skyerp_pos_custom/static/src/js/sky_pos.js:192
+#, python-format
+msgid "Thông báo lỗi"
+msgstr "Thông báo lỗi"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_product_brand_id
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_product_brand_id
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_product_brand_id
+msgid "Thương hiệu"
+msgstr "Thương hiệu"
+
+#. module: skyerp_pos_custom
+#: code:addons/skyerp_pos_custom/models/sky_pos_order.py:29
+#, python-format
+msgid "To return product(s), you need to open a session that will be used to register the refund."
+msgstr "To return product(s), you need to open a session that will be used to register the refund."
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_total_discount
+msgid "Total Discount"
+msgstr "Giảm giá tổng"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_price_total
+msgid "Total Price"
+msgstr "Giá tổng"
+
+#. module: skyerp_pos_custom
+#. openerp-web
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_base.xml:122
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_base.xml:307
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_note.xml:319
+#, python-format
+msgid "TỔNG"
+msgstr "TỔNG"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_price_sub_total
+msgid "Tổng (chưa VAT)"
+msgstr "Tổng (chưa VAT)"
+
+#. module: skyerp_pos_custom
+#. openerp-web
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_base.xml:159
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_base.xml:344
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_note.xml:356
+#, python-format
+msgid "Tổng thuế"
+msgstr "Tổng thuế"
+
+#. module: skyerp_pos_custom
+#. openerp-web
+#: code:addons/skyerp_pos_custom/static/src/js/sky_pos.js:193
+#, python-format
+msgid "Tổng tiển không thể âm!\n"
+"\n"
+"Nếu khách trả hàng, phải mua lại đơn hàng có giá trị tương đương hoặc cao hơn."
+msgstr "Tổng tiển không thể âm!\n"
+"\n"
+"Nếu khách trả hàng, phải mua lại đơn hàng có giá trị tương đương hoặc cao hơn."
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_price_unit
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_price_unit
+msgid "Unit Price"
+msgstr "Đơn giá"
+
+#. module: skyerp_pos_custom
+#: model:ir.model,name:skyerp_pos_custom.model_res_users
+msgid "Users"
+msgstr "Người dùng"
+
+#. module: skyerp_pos_custom
+#. openerp-web
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_note.xml:190
+#, python-format
+msgid "VAT:"
+msgstr "VAT:"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_supplier_stock_location_id
+msgid "Warehouse"
+msgstr "Kho hàng"
+
+#. module: skyerp_pos_custom
+#. openerp-web
+#: code:addons/skyerp_pos_custom/static/src/xml/sky_note.xml:64
+#, python-format
+msgid "giá"
+msgstr "giá"
+
+#. module: skyerp_pos_custom
+#: model:ir.model,name:skyerp_pos_custom.model_pos_config
+msgid "pos.config"
+msgstr "Điểm bán lẻ"
+
+#. module: skyerp_pos_custom
+#: model:ir.model,name:skyerp_pos_custom.model_pos_session
+msgid "pos.session"
+msgstr "Phiên"
+
+#. module: skyerp_pos_custom
+#: model:ir.model,name:skyerp_pos_custom.model_report_pos_order_group
+msgid "report.pos.order.group"
+msgstr "report.pos.order.group"
+
+#. module: skyerp_pos_custom
+#: model:ir.model,name:skyerp_pos_custom.model_report_pos_order_supplier
+msgid "report.pos.order.supplier"
+msgstr "report.pos.order.supplier"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_config_id
+msgid "Điểm bán lẻ"
+msgstr "Điểm bán lẻ"
+
+#. module: skyerp_pos_custom
+#: code:addons/skyerp_pos_custom/models/sky_pos_order.py:69
+#, python-format
+msgid "Đây là đơn hàng trả lại. Số lượng sản phẩm không thể lớn hơn 0."
+msgstr "Đây là đơn hàng trả lại. Số lượng sản phẩm không thể lớn hơn 0."
+
+#. module: skyerp_pos_custom
+#: selection:report.pos.order.group,state:0
+msgid "Đã thanh toán"
+msgstr "Đã thanh toán"
+
+#. module: skyerp_pos_custom
+#: selection:report.pos.order.group,state:0
+msgid "Đã vào sổ"
+msgstr "Đã vào sổ"
+
+#. module: skyerp_pos_custom
+#: selection:report.pos.order.group,state:0
+msgid "Đã xuất hóa đơn"
+msgstr "Đã xuất hóa đơn"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_price_unit
+msgid "Đơn giá"
+msgstr "Đơn giá"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_order_id
+msgid "Đơn hàng"
+msgstr "Đơn hàng"
+
+#. module: skyerp_pos_custom
+#: code:addons/skyerp_pos_custom/models/sky_account.py:60
+#, python-format
+msgid "Đơn hàng chưa có sao kê"
+msgstr "Đơn hàng chưa có sao kê"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_location_id
+msgid "Địa điểm"
+msgstr "Địa điểm"
+
+#. module: skyerp_pos_custom
+#: model:ir.model.fields,field_description:skyerp_pos_custom.field_report_pos_order_group_partner_id
+msgid "Đối tác"
+msgstr "Đối tác"
+

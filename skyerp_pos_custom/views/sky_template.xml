@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+    
+    <template id="assets" inherit_id="pos_product_available.assets_backend">
+      <xpath expr="." position="inside">
+          <script type="text/javascript" src="/skyerp_pos_custom/static/src/js/sky_rebrand.js"></script>
+          <script type="text/javascript" src="/skyerp_pos_custom/static/src/js/sky_pos.js"></script>
+      </xpath>
+    </template>
+
+</data>
+</odoo>
