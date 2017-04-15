@@ -3,10 +3,16 @@ from odoo import api, fields, models, _
 from odoo.exceptions import UserError, ValidationError
 
 class PosSession(models.Model):
-    _inherit = 'pos.session'
+    _inherit    = ['mail.thread', 'pos.session']
+    _name       = 'pos.session'
 
 
-    sum_cash = fields.Float(compute='_compute_sum_cash', digits=0, default=0, string='Tổng tiền mặt', store=True)
+    sum_cash        = fields.Float(compute='_compute_sum_cash', digits=0, default=0, string='Tổng tiền mặt', store=True)
+    
+    inventory_ok = fields.Selection([('ok', 'Xác nhận')], string='Đủ số lượng hàng', track_visibility='onchange')
+    cash_ok      = fields.Selection([('ok', 'Xác nhận')], string='Đủ tiền mặt', track_visibility='onchange')
+    bank_ok      = fields.Selection([('ok', 'Xác nhận')], string='Đủ tiền cà thẻ', track_visibility='onchange')
+
 
     @api.one 
     @api.depends('statement_ids.line_ids.amount')
@@ -19,6 +25,14 @@ class PosSession(models.Model):
 
     @api.multi
     def action_pos_session_close(self):
+
+        for session in self:
+            if not session.inventory_ok:
+                raise ValidationError(_('Vui lòng xác nhận đủ số lượng hàng.'))
+            if not session.cash_ok:
+                raise ValidationError(_('Vui lòng xác nhận đủ tiền mặt.'))
+            if not session.bank_ok:
+                raise ValidationError(_('Vui lòng xác nhận đủ cà thẻ.'))
 
         for order in self.mapped('order_ids'):
             if order.alert_order and not order.approve_user_id:

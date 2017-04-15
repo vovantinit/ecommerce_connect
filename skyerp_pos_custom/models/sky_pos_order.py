@@ -9,22 +9,27 @@ class PosOrder(models.Model):
 
     _description = 'Đơn hàng'
 
-    @api.depends('lines.qty')
-    def _compute_alert_order(self):
-        for order in self:
-            for line in order.lines:
-                if line.qty < 0:
-                    order.alert_order = True
-                    break
+    # @api.depends('lines.qty', 'date_order', 'refund_from.date_order')
+    # def _compute_alert_order(self):
+    #     limit_return_day = int(self.env['ir.config_parameter'].sudo().get_param('limit_return_day'))
+    #     for order in self:
+    #         date_today  = fields.Date.from_string(order.date_order[:10])            
+    #         for line in order.lines:
+    #             if line.qty >= 0: 
+    #                 continue
+    #             old_date    = fields.Date.from_string(order.refund_from.date_order[:10])
+    #             if (date_today - old_date).days > limit_return_day:
+    #                 order.alert_order = True
+    #                 break
 
     refund_from     = fields.Many2one('pos.order', string='Là trả hàng của đơn hàng', readonly=True)
     payment_ids     = fields.One2many('account.payment', 'pos_order_id', 'Payments')
     had_statement   = fields.Boolean('Đã có sao kê', compute='_compute_had_statement', store=True)
 
     old_order_name  = fields.Char('Old order')
-
+    reason          = fields.Char('Lý do', readonly=True)
     approve_user_id = fields.Many2one('res.users', readonly=True)
-    alert_order     = fields.Boolean(compute='_compute_alert_order', store=True)
+    # alert_order     = fields.Boolean(compute='_compute_alert_order', store=True)
 
     @api.multi
     def sky_action_approve(self):
@@ -39,6 +44,7 @@ class PosOrder(models.Model):
     def _order_fields(self, ui_order):
         order_fields = super(PosOrder, self)._order_fields(ui_order)
         order_fields['old_order_name'] = ui_order.get('old_order_name', False)
+        order_fields['reason'] = ui_order.get('reason', False)
         return order_fields
 
     @api.model
@@ -97,41 +103,34 @@ class PosOrder(models.Model):
             self.refund_from.statement_ids.write({'pass_pos': True})
         return super(PosOrder, self.with_context(default_pass_pos=self.refund_from and True or False)).add_payment(data)
 
-    @api.multi
-    def _tgl_check_qty_return(self):
-        self.ensure_one()
-        for order in self:
-            # qty = record.qty + sum(self.search([('sky_note','=',record.order_id.name)]).mapped('qty'))
-            pass
-
-    @api.model
-    def tgl_check_line_refund(self, product_id, partner_id, qty, price, old_order_name):
-        print 'tgl_check_refund', product_id, partner_id, qty, price, old_order_name  
+    # @api.model
+    # def tgl_check_line_refund(self, product_id, partner_id, qty, price, old_order_name):
+    #     print 'tgl_check_refund', product_id, partner_id, qty, price, old_order_name  
         
-        product = self.env['product.product'].browse(product_id)
-        OrderLine = self.env['pos.order.line']
+    #     product = self.env['product.product'].browse(product_id)
+    #     OrderLine = self.env['pos.order.line']
 
-        old_order = self.search([('name','=',old_order_name),('partner_id','=',partner_id)])
-        if not old_order:
-            return {'error': u'Bạn phải chọn đúng khách hàng và nhập đúng mã của đơn hàng cũ.' }
+    #     old_order = self.search([('name','=',old_order_name),('partner_id','=',partner_id)])
+    #     if not old_order:
+    #         return {'error': u'Bạn phải chọn đúng khách hàng và nhập đúng mã của đơn hàng cũ.' }
 
-        old_date    = fields.Date.from_string(old_order.date_order[:10])
-        date_today  = fields.Date.from_string(fields.Date.today())
+    #     old_date    = fields.Date.from_string(old_order.date_order[:10])
+    #     date_today  = fields.Date.from_string(fields.Date.today())
 
-        limit_return_day = int(self.env['ir.config_parameter'].sudo().get_param('limit_return_day'))
-        if (date_today - old_date).days > limit_return_day:
-            return {'notify': u'Đơn hàng đã quá {} ngày.'.format(limit_return_day) }
+    #     limit_return_day = int(self.env['ir.config_parameter'].sudo().get_param('limit_return_day'))
+    #     if (date_today - old_date).days > limit_return_day:
+    #         return {'notify': u'Đơn hàng đã quá {} ngày.'.format(limit_return_day) }
 
-        line_return = OrderLine.search([('sky_note','=',old_order.name)]) + old_order.lines
-        qty_can_be_return = sum(line_return.filtered(lambda r: r.product_id.id == product_id).mapped('qty'))
+    #     line_return = OrderLine.search([('sky_note','=',old_order.name)]) + old_order.lines
+    #     qty_can_be_return = sum(line_return.filtered(lambda r: r.product_id.id == product_id).mapped('qty'))
 
-        if qty_can_be_return + qty < 0:
-            return {'error': u'Đơn hàng {} chỉ có thể trả tối đa {} sản phẩm {}.'.format(old_order_name, int(qty_can_be_return), product.display_name) }
+    #     if qty_can_be_return + qty < 0:
+    #         return {'error': u'Đơn hàng {} chỉ có thể trả tối đa {} sản phẩm {}.'.format(old_order_name, int(qty_can_be_return), product.display_name) }
 
-        return {'notify': 'Luu y, don hang nay phai duoc cap tren duyet truoc khi dong phien'}    
+    #     return {'notify': 'Luu y, don hang nay phai duoc cap tren duyet truoc khi dong phien'}    
 
     @api.model
-    def tgl_check_refund2(self, data, partner_id, order_name, session_id):
+    def tgl_check_refund(self, data, partner_id, order_name, session_id):
 
         # Tim don hang cu
         old_order = self.search([('name','=',order_name)])
@@ -143,33 +142,42 @@ class PosOrder(models.Model):
             return {'error': u'Khách hàng không đúng.'}
 
         # Neu tat ca cac dong deu am (so luong < 0) thi tat ca thong tin phai trung khop
-        if all(line['qty'] < 0 for line in data):
-            if len(data) != len(old_order.lines):
-                return {'error': u'Tất cả thông tin phải trùng khớp với đơn hàng cũ.'}
-            if old_order.session_id.id != session_id:
-                return {'error': u'Đơn trả hàng phải ở phiên hiện tại.' }
-            for line in data:
-                for order_line in old_order.lines:
-                    if order_line.product_id.id == line['product_id'] \
-                    and int(order_line.qty) + int(line['qty']) == 0 \
-                    and order_line.price_subtotal + line['price']  == 0:
-                        break
-                else:
-                    return {'error': u'Tất cả thông tin phải trùng khớp với đơn hàng cũ.'}
+        # if all(line['qty'] < 0 for line in data):
+        #     if len(data) != len(old_order.lines):
+        #         return {'error': u'Tất cả thông tin phải trùng khớp với đơn hàng cũ.'}
+        #     if old_order.session_id.id != session_id:
+        #         return {'error': u'Đơn trả hàng phải ở phiên hiện tại.' }
+        #     for line in data:
+        #         for order_line in old_order.lines:
+        #             if order_line.product_id.id == line['product_id'] \
+        #             and int(order_line.qty) + int(line['qty']) == 0 \
+        #             and order_line.price_subtotal + line['price']  == 0:
+        #                 break
+        #         else:
+        #             return {'error': u'Tất cả thông tin phải trùng khớp với đơn hàng cũ.'}
 
-        else:
-            # limit_return_day = int(self.env['ir.config_parameter'].sudo().get_param('limit_return_day'))
-            Product = self.env['product.product']
-            line_return = self.env['pos.order.line'].search([('order_id.refund_from','=',old_order.id)]) + old_order.lines
-            for line in data:
-                if line['qty'] > 0: continue
-                product = Product.browse(line['product_id'])
-                qty_can_be_return = sum(line_return.filtered(lambda r: r.product_id.id == line['product_id']).mapped('qty'))
-                if qty_can_be_return + line['qty'] < 0:
-                    return {'error': u'Đơn hàng {} chỉ có thể trả tối đa {} sản phẩm {}.'.format(order_name, int(qty_can_be_return), product.display_name) }
+        # else:        
 
-            else:
-                pass
+        Product = self.env['product.product']
+        line_return = self.env['pos.order.line'].search([('order_id.refund_from','=',old_order.id)]) + old_order.lines
+
+        for line in data:
+            if line['qty'] > 0: continue
+            for order_line in old_order.lines:
+                if order_line.product_id.id == line['product_id'] and abs(order_line.price_subtotal + line['price']) > 0.00001:
+                    return {'error': u'Sản phẩm {} phải có giá bán bằng với giá bán của đơn hàng {}.'.format(order_line.product_id.display_name, order_name)}
+            product = Product.browse(line['product_id'])
+            qty_can_be_return = sum(line_return.filtered(lambda r: r.product_id.id == line['product_id']).mapped('qty'))
+            if qty_can_be_return + line['qty'] < 0:
+                return {'error': u'Đơn hàng {} chỉ có thể trả tối đa {} sản phẩm {}.'.format(order_name, int(qty_can_be_return), product.display_name) }
+
+        old_date    = fields.Date.from_string(old_order.date_order[:10])
+        date_today  = fields.Date.from_string(fields.Date.today())
+
+        limit_return_day = int(self.env['ir.config_parameter'].sudo().get_param('limit_return_day'))
+        if (date_today - old_date).days > limit_return_day:
+            return {'notify': u'Đơn hàng đã quá {} ngày.'.format(limit_return_day) }
+
         return {}
 
     @api.model
